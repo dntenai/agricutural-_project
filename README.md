@@ -25,7 +25,7 @@ rainfall - rainfall in mm
   
 - Five classification algorithms were employed: Support Vector Machine (SVM), Random Forest, Logistic Regression, Gradient Boosting, and Gaussian Naive Bayes (GaussianNB).
   
-- For each algorithm, a pipeline was created, which included a StandardScaler for feature scaling and the respective classifier.
+- A pipeline was created for each algorithm, including a StandardScaler for feature scaling and the respective classifier.
   
 - Hyperparameters for each algorithm were optimized using GridSearchCV with a 5-fold cross-validation strategy to find the best combination of parameters.
   
@@ -48,20 +48,22 @@ It was split into training and validation sets, with 80% allocated for training 
 
 A ResNet9 architecture was implemented, featuring convolutional blocks with batch normalization and ReLU activation, along with residual connections to enhance learning.
 
-The model was compiled using a sparse categorical crossentropy loss function and an SGD optimizer, with early stopping employed to prevent overfitting.
+The model was compiled using a sparse categorical cross-entropy loss function and an SGD optimizer, with early stopping employed to prevent overfitting.
 
-A learning rate scheduler was utilized to dynamically adjust the learning rate during training, optimizing model performance.
+A learning rate scheduler was utilized to adjust the learning rate during training dynamically, optimizing model performance.
 
 Following training, the model's performance was evaluated on the validation dataset to compute both loss and accuracy metrics.
 
 To provide an overview of the model's performance, metrics such as loss and accuracy were visualized across epochs for both training and validation datasets.
+
+Validation Loss: 0.07772257179021835, Validation Accuracy: 0.9765193462371826
 
 
 WEATHER FORECASTING USING CNN-LSTM
 
 This dataset includes temperature and weather information from major cities around the world. It serves as a valuable resource for analyzing the impact of global warming on agriculture and for other weather-related agricultural tasks.
 
-- **Model Definition**: A Sequential model was defined using TensorFlow's Keras API. The model architecture included a Conv1D layer with 32 filters, a kernel size of 5, and "causal" padding, followed by ReLU activation. This was followed by two LSTM layers with 64 units each, both returning sequences. Then, two Dense layers with 30 and 10 units respectively, both with ReLU activation, were added. Finally, a Dense layer with 1 unit (output layer) and a Lambda layer scaling the output by 400 were included.
+- **Model Definition**: A Sequential model was defined using TensorFlow's Keras API. The model architecture included a Conv1D layer with 32 filters, a kernel size of 5, and "causal" padding, followed by ReLU activation. This was followed by two LSTM layers with 64 units each, both returning sequences. Then, two Dense layers with 30 and 10 units were added, respectively, with ReLU activation. Finally, a Dense layer with 1 unit (output layer) and a Lambda layer scaling the output by 400 were included.
 
 - **Data Preparation**: The user used the `windowed_dataset` function to prepare the training data (`train_set`) in batches of size 256, with a window size of 64 and shuffling.
 
@@ -69,6 +71,7 @@ This dataset includes temperature and weather information from major cities arou
 
 - **Model Compilation**: The model was compiled using the Huber loss function and an SGD optimizer with a learning rate of 1e-8 and momentum of 0.9.
 
-- **Model Training**: Training the model was successful, completing all 100 epochs using the defined learning rate schedule.
+- **Model Training**: Training the model was successful, completing all 500 epochs using the defined learning rate schedule.
 
 - **Forecasting**: The model_forecast function was used to generate forecasts for the trained model.
+- mae:1.3705604076385498  This suggests that the model has achieved a reasonably low error rate, indicating a good fit to the training data.
